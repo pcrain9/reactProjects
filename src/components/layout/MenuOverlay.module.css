@@ -1,21 +1,26 @@
 .mainOverlay{
+    position:relative;
     padding-bottom:50px;
     border-radius: 5px;
     box-shadow: 0, 2px, 8px, rgb(0, 0, .26);
     background: darkslategray;
     text-align: center;
     margin-top: 85px;
-    
-}
+    z-index: 1;
+}    
 
 .centerText{
     width: 500px;
     color: white;
     border: 2px solid black;
+    background-color: chocolate;
     text-align: center;
-    margin: auto;
     line-height: 25px;
     padding: 5px;
+    position: absolute;
+    top: 100px;
+    right: 490px;
+    z-index: 2;
 }
 
 img{
