@@ -1,0 +1,30 @@
+/*From w3 schools*/
+
+.header{
+    overflow: hidden;
+    background-color: rgb(138, 39, 39);
+    border-radius: 5px;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; 
+}
+
+.header h2{
+    float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.header h3{
+    float: right;
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 15px;
+  color: white
+}

@@ -1,0 +1,16 @@
+.meal{
+    padding-left: 30px;
+    padding-top: 5x;
+    border: 1px dotted slategray;
+    margin-bottom: 10px;
+    color: darkgoldenrod;
+    justify-content: space-between;
+}
+
+.meal h2{
+    display: flex;
+}
+
+.meal h4{
+    font-style: italic;
+}

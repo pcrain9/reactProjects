@@ -1,0 +1,23 @@
+.mainOverlay{
+    border-bottom:500px;
+    border-radius: 5px;
+    box-shadow: 0, 2px, 8px, rgb(0, 0, .26);
+    background: darkslategray;
+    text-align: center;
+    
+}
+
+.centerText{
+    
+    width: 500px;
+    color: white;
+    border: 2px solid black;
+    
+}
+
+img{
+    margin:10px 10px;
+    border-radius:5px;
+    height:250px;
+    width:500px;
+}
