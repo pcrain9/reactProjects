@@ -5,14 +5,17 @@
     background: darkslategray;
     text-align: center;
     margin-top: 85px;
-    display: table;
+    
 }
 
 .centerText{
     width: 500px;
     color: white;
-    border-left: 500px;
+    border: 2px solid black;
     text-align: center;
+    margin: auto;
+    line-height: 25px;
+    padding: 5px;
 }
 
 img{
