@@ -30,46 +30,52 @@ function MealList() {
         cost: '1'
     }];
 
-    const [orderTracker, setOrderTracker] = useState([{
-        itemName:'',
-        itemCost:'',
-        total:''
-    }]);
+    const [orderTracker, setOrderTracker] = useState([]);
 
     function trackOrders(name, cost, quantity) {
+        console.log(orderTracker);
         //check for empty array
-        if(orderTracker.length === 1 && orderTracker[0].itemName===''){
+        if (orderTracker.length === 0) {
             setOrderTracker([{
                 itemName: name,
                 itemQuantity: quantity,
-                total: cost
+                itemCost: Number(cost) * Number(quantity)
             }]);
-            console.log(orderTracker);
             return;
         }
-        //if not empty, check if key value is in array
-        for (let i of orderTracker) {
+
+        //if not empty, check if name key value is in array
+        for (let i = 0; i < orderTracker.length; i++) {
             if (orderTracker[i].itemName === name) {
-                setOrderTracker(orderTracker[i] = {
-                    itemQuantity: quantity,
-                    total: Number(cost) * Number(quantity)
-                });
-                console.log(orderTracker);
+
+                //copy array
+                const copiedOrder = orderTracker;
+
+                //update the info in copied array
+                copiedOrder[i].itemQuantity = quantity;
+                copiedOrder[i].itemCost = Number(cost) * Number(quantity);
+
+                //set orderTracker to new order
+                setOrderTracker(copiedOrder);
+                /* //clear out copied array: https://www.tutorialspoint.com/in-javascript-how-to-empty-an-array
+                copiedOrder.splice(0, copiedOrder.length) */
                 return;
             }
         }
 
-        //if not found, create new array index and add item
-        setOrderTracker((prevOrder) => [
-            ...prevOrder,
-            {
-                itemName: name,
-                itemQuantity: quantity,
-                cost: Number(cost) * Number(quantity)
-            }
-        ]);
-        console.log(orderTracker); 
-    } 
+        //if not found, create new array index and add item        
+        setOrderTracker((prevOrder) =>
+            [
+                ...prevOrder,
+                {
+                    itemName: name,
+                    itemQuantity: quantity,
+                    itemCost: Number(cost) * Number(quantity)
+                }
+            ]
+        );
+
+    }
 
 
 
