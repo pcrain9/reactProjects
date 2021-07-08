@@ -57,8 +57,6 @@ function MealList() {
 
                 //set orderTracker to new order
                 setOrderTracker(copiedOrder);
-                /* //clear out copied array: https://www.tutorialspoint.com/in-javascript-how-to-empty-an-array
-                copiedOrder.splice(0, copiedOrder.length) */
                 return;
             }
         }
@@ -76,9 +74,6 @@ function MealList() {
         );
 
     }
-
-
-
 
     return (
         <Card className={classes.mealList}>
