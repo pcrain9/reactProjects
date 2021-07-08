@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './Header.module.css';
+import CartIcon from './UI/CartIcon';
 
 
 function Header() {
@@ -7,7 +8,7 @@ function Header() {
         
             <div className={classes.header}>
                 <h2>My Food Ordering App</h2>
-                <h3>Place holder for Cart component</h3>
+                <CartIcon />
             </div>
       
     );

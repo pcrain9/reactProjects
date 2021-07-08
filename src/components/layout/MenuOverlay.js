@@ -2,7 +2,7 @@ import React from 'react';
 
 import classes from './MenuOverlay.module.css';
 import food from './food.jpg';
-import Card from './UI/Card';
+
 
 function Overlay() {
 
