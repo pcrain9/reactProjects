@@ -1,9 +1,12 @@
 .meal{
     padding-left: 30px;
     padding-top: 5x;
-    border: 1px dotted slategray;
+    border: 1px dotted rgb(32, 36, 41);
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
     margin-bottom: 10px;
-    color: darkgoldenrod;
+    color: goldenrod;
     justify-content: space-between;
 }
 
@@ -13,4 +16,25 @@
 
 .meal h4{
     font-style: italic;
+}
+
+.userInteractItems{
+    float:right;
+    height:100px;
+    width:150px;
+    background-color: azure;
+    border:2px solid black;
+    padding: 10px;
+    line-height: 30px;
+    text-align: center;
+}
+
+#userId{
+    background-color: white;
+    color:black;
+    width: 50px;
+}
+
+.addButton{
+    
 }
