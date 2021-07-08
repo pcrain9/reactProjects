@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classes from './CartOverlay.module.css';
 import Card from './Card';
+import MenuContext from '../../store/handle-order';
 
-function CartOverlay() {
+
+function CartOverlay(props) {
+
+    //create context variable
+    const ctx = useContext(MenuContext);
+
     return (
         <Card>
-            <form className={classes.cartForm}>
-
-                <label>Display current items in here, probably as a map()</label>
-                <h3>Total: ${}</h3>
-
-            </form>
-
+            {ctx.menu.map(element =>
+                <ul onClick={props.onClose}
+                key={element.itemId}>
+                    <li>{element.itemName}</li>
+                    <li>{element.itemQuantity}</li>
+                    <li>{element.itemCost}</li>
+                </ul>
+            )}
+            <button onClick={props.onClose}>Close Cart</button>
         </Card>
     )
 }

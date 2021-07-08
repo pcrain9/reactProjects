@@ -4,7 +4,7 @@ import classes from './MenuOverlay.module.css';
 import food from './food.jpg';
 
 
-function Overlay() {
+function  MenuOverlay() {
 
     return (
         
@@ -24,4 +24,4 @@ function Overlay() {
     );
 }
 
-export default Overlay;
+export default MenuOverlay;

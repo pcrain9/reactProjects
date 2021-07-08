@@ -3,7 +3,7 @@ import Card from '../layout/UI/Card';
 import Meals from './Meals';
 import classes from './MealList.module.css';
 
-function MealList() {
+function MealList(props) {
     //generate the meals
     const mealItems = [{
         id: 'm1',
@@ -32,15 +32,17 @@ function MealList() {
 
     const [orderTracker, setOrderTracker] = useState([]);
 
-    function trackOrders(name, cost, quantity) {
+    function trackOrders(id, name, cost, quantity) {
         console.log(orderTracker);
         //check for empty array
         if (orderTracker.length === 0) {
             setOrderTracker([{
+                itemId: id, 
                 itemName: name,
                 itemQuantity: quantity,
                 itemCost: Number(cost) * Number(quantity)
             }]);
+            props.onOrderUpdate(orderTracker);
             return;
         }
 
@@ -57,6 +59,7 @@ function MealList() {
 
                 //set orderTracker to new order
                 setOrderTracker(copiedOrder);
+                props.onOrderUpdate(orderTracker);
                 return;
             }
         }
@@ -66,13 +69,14 @@ function MealList() {
             [
                 ...prevOrder,
                 {
+                    itemId: id,
                     itemName: name,
                     itemQuantity: quantity,
                     itemCost: Number(cost) * Number(quantity)
                 }
             ]
         );
-
+        props.onOrderUpdate(orderTracker);
     }
 
     return (

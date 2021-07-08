@@ -11,12 +11,16 @@ function CartIcon() {
     function displayCart() {
         setShowCart(true);
     }
+    function closeCart() {
+        setShowCart(false);
+    }
 
     return (
         <div>
-        <button onClick={displayCart}
-            className={classes.cartButton}>My Cart</button>
-        { showCart && <CartOverlay /> }
+            <button onClick={displayCart}
+                className={classes.cartButton}>My Cart</button>
+            {showCart && <CartOverlay
+                onClose={closeCart} />}
         </div>
     );
 }

@@ -4,15 +4,15 @@ import classes from './Meals.module.css';
 
 function Meals(props) {
 
-    const [mealCount, setMealCount] = useState(0);
+    const [mealCount, setMealCount] = useState('0');
     
     function incrementMealsClick() {
         setMealCount(Number(mealCount + 1));
-        props.onItemAdded(props.name, props.cost, mealCount);
+        props.onItemAdded(props.id, props.name, props.cost, mealCount);
     }
     function incrementMealsType(event) {
         setMealCount(Number(event.target.value));
-        props.onItemAdded(props.name, props.cost, mealCount);        
+        props.onItemAdded(props.id, props.name, props.cost, mealCount);        
     }
 
     return (
