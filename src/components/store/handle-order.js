@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MenuContext = React.createContext({
-    menu: [],
+    mealItems: [],
     amount: 0,
     addItem: (item) => {},
     removeItem: (id) => {}

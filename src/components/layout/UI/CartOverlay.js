@@ -11,7 +11,7 @@ function CartOverlay(props) {
 
     return (
         <Card>
-            {ctx.menu.map(element =>
+            {ctx.mealItems.map(element =>
                 <ul onClick={props.onClose}
                 key={element.itemId}>
                     <li>{element.itemName}</li>
