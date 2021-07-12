@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Card from '../layout/UI/Card';
 import Meals from './Meals';
+import MenuContext from '../store/handle-order';
 import classes from './MealList.module.css';
 
 function MealList(props) {
@@ -30,66 +31,34 @@ function MealList(props) {
         cost: '1'
     }];
 
-    const [orderTracker, setOrderTracker] = useState([]);
+    const mealsCtx = useContext(MenuContext);
 
     function trackOrders(id, name, cost, quantity) {
-        console.log(orderTracker);
-        //check for empty array
-        if (orderTracker.length === 0) {
-            setOrderTracker([{
-                itemId: id, 
-                itemName: name,
-                itemQuantity: quantity,
-                itemCost: Number(cost) * Number(quantity)
-            }]);
-            props.onOrderUpdate(orderTracker);
-            return;
-        }
 
-        //if not empty, check if name key value is in array
-        for (let i = 0; i < orderTracker.length; i++) {
-            if (orderTracker[i].itemName === name) {
+        const newItem = {
+            id: id,
+            itemName: name,
+            itemCost: cost,
+            itemQuantity: quantity
+        };
 
-                //copy array
-                const copiedOrder = orderTracker;
-
-                //update the info in copied array
-                copiedOrder[i].itemQuantity = quantity;
-                copiedOrder[i].itemCost = Number(cost) * Number(quantity);
-
-                //set orderTracker to new order
-                setOrderTracker(copiedOrder);
-                props.onOrderUpdate(orderTracker);
-                return;
-            }
-        }
-
-        //if not found, create new array index and add item        
-        setOrderTracker((prevOrder) =>
-            [
-                ...prevOrder,
-                {
-                    itemId: id,
-                    itemName: name,
-                    itemQuantity: quantity,
-                    itemCost: Number(cost) * Number(quantity)
-                }
-            ]
-        );
-        props.onOrderUpdate(orderTracker);
+        mealsCtx.addItem(newItem);
     }
 
-    return (
-        <Card className={classes.mealList}>
-            {mealItems.map(element =>
-                <Meals
-                    key={element.id}
-                    name={element.name}
-                    description={element.description}
-                    onItemAdded={trackOrders}
-                    cost={element.cost} />)}
-        </Card>
-    );
+
+
+return (
+    <Card className={classes.mealList}>
+        {mealItems.map(element =>
+            <Meals
+                key={element.id}
+                id={element.id}
+                name={element.name}
+                description={element.description}
+                onItemAdded={trackOrders}
+                cost={element.cost} />)}
+    </Card>
+);
 }
 
 export default MealList;

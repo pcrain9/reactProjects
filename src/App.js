@@ -3,7 +3,7 @@ import './App.css';
 import Header from './components/layout/Header';
 import MenuOverlay from './components/layout/MenuOverlay';
 import MealList from './components/meal_stuff/MealList';
-import MenuContext from './components/store/handle-order';
+import OrderHandler from './components/store/OrderHandler';
 
 function App() {
 
@@ -14,12 +14,11 @@ function App() {
   }
 
   return (
-    <MenuContext.Provider
-      value={{ menu: userOrder }}>
+    <OrderHandler>
       <Header />
       <MenuOverlay />
       <MealList onOrderUpdate={updateOrder} />
-    </MenuContext.Provider>
+    </OrderHandler>
   );
 }
 

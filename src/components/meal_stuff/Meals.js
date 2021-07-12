@@ -1,33 +1,41 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import Card from '../layout/UI/Card';
 import classes from './Meals.module.css';
 
 function Meals(props) {
 
-    const [mealCount, setMealCount] = useState('0');
-    
-    function incrementMealsClick() {
-        setMealCount(Number(mealCount + 1));
-        props.onItemAdded(props.id, props.name, props.cost, mealCount);
+    const mealNumberStatus = useRef();
+
+    function addItemHandler(event){
+        event.preventDefault();
+
+        const amountEntered = mealNumberStatus.current.value;
+        const numberAmountEntered = +amountEntered;
+
+        if(amountEntered === '0' || numberAmountEntered < 1 || numberAmountEntered>5){
+            return;
+        }
+
+        props.onItemAdded(props.id, props.name, props.cost, numberAmountEntered);
     }
-    function incrementMealsType(event) {
-        setMealCount(Number(event.target.value));
-        props.onItemAdded(props.id, props.name, props.cost, mealCount);        
-    }
+
 
     return (
         <Card className={classes.meal}>
-            <div className={classes.userInteractItems}>
+            <form className={classes.userInteractItems}
+                onSubmit={addItemHandler}>
                 <label htmlFor={classes.amount}>How many? </label>
-                <input type='number'
-                    min='0'
-                    max='100'
-                    id={classes.userId}
-                    placeholder={mealCount}
-                    onChange={incrementMealsType} /><br />
-                <button className={classes.addButton}
-                    onClick={incrementMealsClick}>Add+</button>
-            </div><h2>{props.name}</h2>
+                <input 
+                    ref={mealNumberStatus}
+                    type='number'
+                    min='1'
+                    defaultValue='1'
+                    max='10'
+                    step='1'
+                    id={classes.userId}/><br />
+                <button className={classes.addButton}>Add+</button>
+            </form>
+            <h2>{props.name}</h2>
             <p>{props.description}</p>
             <h4>${props.cost}</h4>
         </Card>

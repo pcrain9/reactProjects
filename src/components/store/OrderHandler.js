@@ -4,13 +4,13 @@ import MenuContext from './handle-order';
 
 const emptyCart = {
     mealItems:[],
-    amount: 0,
+    total: 0,
 };
 
 function cartReducer (state, action){
     if(action.type === "ADD"){
         const updatedItems = state.mealItems.concat(action.item);
-        const updatedTotal = state.mealItems + action.itemCost + action.itemQuantity;
+        const updatedTotal = state.total + action.itemCost * action.itemQuantity;
 
         return{mealItems: updatedItems,
         amount: updatedTotal};
@@ -33,8 +33,8 @@ function OrderHandler(props){
     }
 
     const userCart = {
-        items: cartState.mealItems,
-        itemCount: cartState.amount,
+        mealItems: cartState.mealItems,
+        amount: cartState.amount,
         addItem: addItemtoCartHandler,
         removeItem: removeItemfromCartHandler
     }
