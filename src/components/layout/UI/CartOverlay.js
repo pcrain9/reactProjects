@@ -5,26 +5,36 @@ import Card from './Card';
 import MenuContext from '../../store/handle-order';
 
 
-function CartOverlay(props) {
-
+function CartModal(props) {
     //create context variable
     const ctx = useContext(MenuContext);
 
     return (
-        {ReactDOM.createPortal(<Card>
-            <ul onClick={props.onClose}
-                className={classes.cartList}
-                key={classes.itemId}>
+        <div onClick={props.onClose} className={classes.backDrop}>
+        <Card>        
+            <ul className={classes.cartList}>
                 {ctx.mealItems.map(element =>
-                    <>
-                        <li>{element.itemName}</li>
-                        <li>{element.itemQuantity}</li>
-                        <li>{element.itemCost}</li>
-                    </>)
+                    <>                        
+                        <li className={classes.cart_items}
+                        key={classes.itemId}>{element.itemName}</li>
+                        <li className={classes.cart_items}>{element.itemQuantity}</li>
+                        <li className={classes.cart_items}>{element.itemCost}</li>
+                    </>
+                )
                 }
             </ul>
             <button onClick={props.onClose}>Close Cart</button>
-        </Card>, document.getElementById('modalHandler')}
+        </Card>
+        </div>
+    )
+}
+function CartOverlay(props) {
+
+    return (
+        <>
+            {ReactDOM.createPortal(<CartModal onClose={props.onClose} />,
+                document.getElementById("modalHandler"))}
+        </>
     );
 }
 

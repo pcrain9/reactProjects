@@ -10,10 +10,11 @@ const emptyCart = {
 function cartReducer (state, action){
     if(action.type === "ADD"){
         const updatedItems = state.mealItems.concat(action.item);
-        const updatedTotal = state.total + action.itemCost * action.itemQuantity;
-
+        console.log(state.total);        
+        const updatedTotal = state.total + action.item.itemCost * Number(action.item.itemQuantity);
+        
         return{mealItems: updatedItems,
-        amount: updatedTotal};
+        total: updatedTotal};
     }
     if(action.type === "REMOVE"){
 
@@ -34,7 +35,7 @@ function OrderHandler(props){
 
     const userCart = {
         mealItems: cartState.mealItems,
-        amount: cartState.amount,
+        total: cartState.total,
         addItem: addItemtoCartHandler,
         removeItem: removeItemfromCartHandler
     }

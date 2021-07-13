@@ -1,3 +1,21 @@
 .cartList{
     list-style-type: none;
+    background-color: white;
+    border-radius: 15px;
+    margin:auto;
+    height:500px;
+    width:500px;
+    padding: 20px;
+    border-top:20px;
+}
+
+.cart_items{
+    color:red;
+    margin-bottom: 5px;
+}
+.backDrop{
+    position: absolute;
+    background-color: rgb(0, 0, 0, .5);
+    height: 100%;
+    width: 100%;    
 }

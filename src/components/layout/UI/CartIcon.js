@@ -1,8 +1,7 @@
 import React, { useState, useContext } from 'react';
-import ReactDOM from 'react-dom';
-import CartOverlay from './CartOverlay';
 import classes from './CartIcon.module.css';
 import MenuContext from '../../store/handle-order';
+import CartOverlay from './CartOverlay';
 
 
 function CartIcon() {
