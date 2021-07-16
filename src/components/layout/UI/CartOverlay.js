@@ -23,6 +23,7 @@ function CartModal(props) {
                 )
                 }
             </ul>
+            <div><h4>Total: {ctx.total}</h4></div>
             <button onClick={props.onClose}>Close Cart</button>
         </Card>
         </div>

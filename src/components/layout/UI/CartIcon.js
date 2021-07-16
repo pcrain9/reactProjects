@@ -21,7 +21,7 @@ function CartIcon() {
         <div>
             <button onClick={displayCart}
                 className={classes.cartButton}>My Cart</button>
-            <span className={classes.cartButton}>{notificationCtx.amount}</span>
+            <span className={classes.cartButton}>{notificationCtx.mealItems.length}</span>
             {showCart && <CartOverlay
                 onClose={closeCart} />}
         </div>
