@@ -20,6 +20,8 @@
     color: rgb(95, 3, 3);
 }
 .cart_items{
+    display:flex;
+    justify-content: space-between;
     padding-left: 10px;
     color:rgb(241, 200, 94);
     margin-bottom: 5px;
@@ -38,4 +40,14 @@
 .separate_buttons{
     display: flex;
     justify-content: space-evenly;
+}
+
+.cart_item_form{
+    
+    margin:auto;
+}
+
+.cart_item_buttons{
+    margin: 2px;
+    padding: 2.5px;
 }
