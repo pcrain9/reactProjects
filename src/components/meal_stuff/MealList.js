@@ -41,7 +41,7 @@ function MealList(props) {
             itemCost: cost,
             itemQuantity: quantity
         };
-
+        console.log("itemQuantity: " +newItem.itemQuantity);
         mealsCtx.addItem(newItem);
     }
 

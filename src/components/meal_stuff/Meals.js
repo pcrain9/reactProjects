@@ -8,7 +8,6 @@ function Meals(props) {
 
     function addItemHandler(event){
         event.preventDefault();
-
         const amountEntered = mealNumberStatus.current.value;
         const numberAmountEntered = +amountEntered;
 

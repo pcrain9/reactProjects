@@ -14,12 +14,11 @@ function CartModal(props) {
         <Card>        
             <ul className={classes.cartList}>
                 {ctx.mealItems.map(element =>
-                    <>                        
-                        <li className={classes.cart_items}
-                        key={classes.itemId}>{element.itemName}</li>
+                    <div key={Math.random()}>                        
+                        <li className={classes.cart_items}>{element.itemName}</li>
                         <li className={classes.cart_items}>{element.itemQuantity}</li>
                         <li className={classes.cart_items}>{element.itemCost}</li>
-                    </>
+                    </div>
                 )
                 }
             </ul>

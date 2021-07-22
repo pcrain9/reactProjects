@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import Header from './components/layout/Header';
 import MenuOverlay from './components/layout/MenuOverlay';
@@ -7,17 +7,11 @@ import OrderHandler from './components/store/OrderHandler';
 
 function App() {
 
-  const [userOrder, setUserOrder] = useState([]);
-
-  function updateOrder(order) {
-    setUserOrder(order);
-  }
-
   return (
     <OrderHandler>
       <Header />
       <MenuOverlay />
-      <MealList onOrderUpdate={updateOrder} />
+      <MealList/>
     </OrderHandler>
   );
 }

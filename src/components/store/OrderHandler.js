@@ -9,26 +9,34 @@ const emptyCart = {
 
 function cartReducer(state, action) {
     if (action.type === "ADD") {
+        const updatedTotal = state.total + action.item.itemCost * Number(action.item.itemQuantity);
         for (let i = 0; i < state.mealItems.length; i++) {
             if (state.mealItems[i].id === action.item.id) {
-                const updatedItems = state.mealItems;
-                const updatedTotal = state.total + action.item.itemCost * Number(action.item.itemQuantity);
-                updatedItems[i].itemQuantity += action.item.itemQuantity;
+                //create copy of item
+                const itemToUpdate = state.mealItems[i];
+                let updatedMealList;
+                let innerItemUpdate = {
+                    ...itemToUpdate,
+                    itemQuantity: itemToUpdate.itemQuantity + action.item.itemQuantity
+                };
+
+                updatedMealList = [...state.mealItems];
+                updatedMealList[i] = innerItemUpdate;
 
                 return {
-                    mealItems: updatedItems,
+                    mealItems: updatedMealList,
                     total: updatedTotal
                 };
             }
         }
         const updatedItems = state.mealItems.concat(action.item);
-        const updatedTotal = state.total + action.item.itemCost * Number(action.item.itemQuantity);
 
         return {
             mealItems: updatedItems,
             total: updatedTotal
         };
     }
+    
     if (action.type === "REMOVE") {
 
     }
