@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import classes from './CartOverlay.module.css';
 import Card from './Card';
 import MenuContext from '../../store/handle-order';
+import Button from './Button';
 
 
 function CartModal(props) {
@@ -23,7 +24,7 @@ function CartModal(props) {
                 }
             </ul>
             <div><h4>Total: {ctx.total}</h4></div>
-            <button onClick={props.onClose}>Close Cart</button>
+            <Button onClose={props.onClose}>Close Cart</Button>
         </Card>
         </div>
     )

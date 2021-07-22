@@ -1,11 +1,8 @@
-import React, { useContext } from 'react';
-import MenuContext from '../../store/handle-order';
+import React from 'react';
 
 import classes from './Button.module.css';
 
 function Button(props){
-
-    const addSubCtx = useContext(MenuContext);
 
     function evaluateClick(clicktype){
         if(props.onDisplay){
@@ -16,10 +13,7 @@ function Button(props){
             props.onClose();
             return;
         }
-        //flag for possible remove
-        else if(props.onAdd){
-            addSubCtx.addItem;
-        }
+        
         else return;
     }
 

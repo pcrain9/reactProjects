@@ -19,8 +19,9 @@ function cartReducer(state, action) {
                     ...itemToUpdate,
                     itemQuantity: itemToUpdate.itemQuantity + action.item.itemQuantity
                 };
-
+                //copy state array here
                 updatedMealList = [...state.mealItems];
+                //change copied state here
                 updatedMealList[i] = innerItemUpdate;
 
                 return {
@@ -36,7 +37,7 @@ function cartReducer(state, action) {
             total: updatedTotal
         };
     }
-    
+
     if (action.type === "REMOVE") {
 
     }

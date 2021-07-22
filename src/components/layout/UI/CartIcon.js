@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import classes from './CartIcon.module.css';
 import MenuContext from '../../store/handle-order';
 import CartOverlay from './CartOverlay';
+import Button from './Button';
 
 
 function CartIcon() {
@@ -19,8 +20,8 @@ function CartIcon() {
 
     return (
         <div>
-            <button onClick={displayCart}
-                className={classes.cartButton}>My Cart</button>
+            <Button onDisplay={displayCart}
+                className={classes.cartButton}>My Cart</Button>
             <span className={classes.cartButton}>{notificationCtx.mealItems.length}</span>
             {showCart && <CartOverlay
                 onClose={closeCart} />}
