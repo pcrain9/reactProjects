@@ -1,21 +1,41 @@
 .cartList{
-    list-style-type: none;
     background-color: white;
     border-radius: 15px;
     margin:auto;
-    height:500px;
+    height:420px;
+    max-height: 100%;
     width:500px;
+    max-width: 100%;
     padding: 20px;
     border-top:20px;
+    position: fixed;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
+.total{
+    text-align: center;
+    color: rgb(95, 3, 3);
+}
 .cart_items{
-    color:red;
+    padding-left: 10px;
+    color:rgb(241, 200, 94);
     margin-bottom: 5px;
+    
 }
 .backDrop{
-    position: absolute;
+    position:fixed;
     background-color: rgb(0, 0, 0, .5);
+    z-index: 5;
+    top: 0;
+    left: 0;
     height: 100%;
     width: 100%;    
+}
+
+.separate_buttons{
+    display: flex;
+    justify-content: space-evenly;
 }

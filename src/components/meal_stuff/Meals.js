@@ -23,7 +23,8 @@ function Meals(props) {
         <Card className={classes.meal}>
             <form className={classes.userInteractItems}
                 onSubmit={addItemHandler}>
-                <label htmlFor={classes.amount}>How many? </label>
+                <label className={classes.amount} 
+                htmlFor={classes.amount}>How many? </label>
                 <input 
                     ref={mealNumberStatus}
                     type='number'

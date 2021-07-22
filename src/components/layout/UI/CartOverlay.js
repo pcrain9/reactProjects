@@ -5,36 +5,44 @@ import Card from './Card';
 import MenuContext from '../../store/handle-order';
 import Button from './Button';
 
-
+function BackgroundModal(props) {
+    return (
+        <div onClick={props.onClose} className={classes.backDrop}>{props.children}</div>
+    )
+}
 function CartModal(props) {
     //create context variable
     const ctx = useContext(MenuContext);
 
     return (
-        <div onClick={props.onClose} className={classes.backDrop}>
-        <Card>        
-            <ul className={classes.cartList}>
+        <Card className={classes.cartList}>
+            <div className={classes.cartList}>
                 {ctx.mealItems.map(element =>
-                    <div key={Math.random()}>                        
-                        <li className={classes.cart_items}>{element.itemName}</li>
-                        <li className={classes.cart_items}>{element.itemQuantity}</li>
-                        <li className={classes.cart_items}>{element.itemCost}</li>
-                    </div>
+                    <Card className={classes.cart_items} key={Math.random()}>
+                        <h3>{element.itemQuantity} {element.itemName}(s)....</h3>
+                        <h3>${Number(element.itemCost).toFixed(2)}</h3>
+                    </Card>
                 )
                 }
-            </ul>
-            <div><h4>Total: {ctx.total}</h4></div>
-            <Button onClose={props.onClose}>Close Cart</Button>
+
+                <h2 className={classes.total}>Total: ${Number(ctx.total).toFixed(2)}</h2>
+                <div className={classes.separate_buttons}>
+                <Button onClose={props.onClose}>Close Cart</Button>
+                <Button onClose={props.onClose}>Place Your Order!</Button>
+                </div>
+            </div>
         </Card>
-        </div>
     )
 }
 function CartOverlay(props) {
 
     return (
         <>
+
             {ReactDOM.createPortal(<CartModal onClose={props.onClose} />,
                 document.getElementById("modalHandler"))}
+            {ReactDOM.createPortal(<BackgroundModal onClose={props.onClose} />, 
+                document.getElementById("backGround"))}
         </>
     );
 }

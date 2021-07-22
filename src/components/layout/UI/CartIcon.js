@@ -22,7 +22,7 @@ function CartIcon() {
         <div>
             <Button onDisplay={displayCart}
                 className={classes.cartButton}>My Cart</Button>
-            <span className={classes.cartButton}>{notificationCtx.mealItems.length}</span>
+            <span className={classes.badge}>{notificationCtx.mealItems.length}</span>
             {showCart && <CartOverlay
                 onClose={closeCart} />}
         </div>
