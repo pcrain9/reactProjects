@@ -39,7 +39,40 @@ function cartReducer(state, action) {
     }
 
     if (action.type === "REMOVE") {
-        console.log("here");
+        //get correct id
+        
+        for (let i = 0; i < state.mealItems.length; i++) {
+            if (state.mealItems[i].id === action.id) {
+                //create instance of item to be decremented
+                const updatedItem = state.mealItems[i];
+                //update the total
+                const updatedTotal = state.total - updatedItem.itemCost;
+                //update item instance to account for decrement 
+                let itemUpdate = {
+                    ...updatedItem,
+                    itemQuantity: Number(updatedItem.itemQuantity) - 1
+                };
+                //create copy of array to update and pass back
+                let updatedMealList = [...state.mealItems];
+
+                //reached 0 items check
+                if (itemUpdate.itemQuantity === 0) {
+                    updatedMealList.splice(i, 1);
+                    return{
+                        mealItems: updatedMealList, 
+                        total: updatedTotal
+                    };
+                }
+
+                //write new item info into copied array
+                updatedMealList[i] = itemUpdate;
+
+                return {
+                    mealItems: updatedMealList,
+                    total: updatedTotal
+                };
+            }
+        }
     }
 
     return emptyCart;
@@ -54,7 +87,7 @@ function OrderHandler(props) {
     }
 
     function removeItemfromCartHandler(id) {
-        cartDispatcher({ type: "REMOVE", id: id})
+        cartDispatcher({ type: "REMOVE", id: id })
     }
 
     const userCart = {

@@ -46,7 +46,7 @@ function CartModal(props) {
                 <h2 className={classes.total}>Total: ${Number(ctx.total).toFixed(2)}</h2>
                 <div className={classes.separate_buttons}>
                     <Button onClose={props.onClose}>Close Cart</Button>
-                    <Button onClose={props.onClose}>Place Your Order!</Button>
+                    {ctx.mealItems.length !== 0 && <Button onClose={props.onClose}>Place Your Order!</Button>}
                 </div>
             </div>
         </Card>
