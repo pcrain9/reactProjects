@@ -39,10 +39,12 @@ function cartReducer(state, action) {
     }
 
     if (action.type === "REMOVE") {
-
+        console.log("here");
     }
+
     return emptyCart;
 }
+
 function OrderHandler(props) {
 
     const [cartState, cartDispatcher] = useReducer(cartReducer, emptyCart)
@@ -52,7 +54,7 @@ function OrderHandler(props) {
     }
 
     function removeItemfromCartHandler(id) {
-
+        cartDispatcher({ type: "REMOVE", id: id})
     }
 
     const userCart = {

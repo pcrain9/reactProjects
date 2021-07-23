@@ -43,8 +43,12 @@
 }
 
 .cart_item_form{
-    
+    text-align: center;
     margin:auto;
+    background-color: cornsilk;
+    border-radius: 35px;
+    
+
 }
 
 .cart_item_buttons{

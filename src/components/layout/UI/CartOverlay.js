@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext } from 'react';
 import ReactDOM from 'react-dom';
 import classes from './CartOverlay.module.css';
 import Card from './Card';
@@ -14,23 +14,13 @@ function BackgroundModal(props) {
 function CartModal(props) {
     //create context variable
     const ctx = useContext(MenuContext);
-    const formCtrl = useRef();
-    const [checkSub, setCheckSub] = useState(false);
 
-    function decrementItem(){
-        setCheckSub(false);
+    function decrementItem(id) {
+        ctx.removeItem(id);
     }
 
-    function incrementItem(){
-        setCheckSub(true);
-    }
-
-    function submitHandler(event){
-        event.preventDefault();
-        
-        if(checkSub){
-            ctx.addItem()
-        }
+    function incrementItem(item) {
+        ctx.addItem(item);
     }
 
     return (
@@ -42,22 +32,14 @@ function CartModal(props) {
                         <h3>{element.itemQuantity} {element.itemName}(s)....</h3>
                         <h3>${Number(element.itemCost).toFixed(2)}</h3>
 
-                        <form className={classes.cart_item_form}
-                        onSubmit= {submitHandler}>
-                            <input
-                                ref={formCtrl}
-                                className={classes.cart_item_input}
-                                type='number'
-                                min='0'
-                                max='10'
-                                value={element.itemQuantity} />
+                        <div className={classes.cart_item_form}>
+                            <h3 className={classes.cart_item_input}>{element.itemQuantity}</h3>
                             <button className={classes.cart_item_buttons}
-                            onClick={decrementItem}>-Remove</button>
-                            <button className={classes.cart_item_buttons}>+Add</button>
-                        </form>
+                                onClick={() => decrementItem(element.id)}>-Remove</button>
+                            <button className={classes.cart_item_buttons}
+                            onClick={() => incrementItem(element)}>+Add</button>
+                        </div>
                     </Card>
-
-
                 )
                 }
 
