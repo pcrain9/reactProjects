@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import classes from './CartOverlay.module.css';
 import Card from './Card';
@@ -10,14 +10,27 @@ function BackgroundModal(props) {
         <div onClick={props.onClose} className={classes.backDrop}>{props.children}</div>
     )
 }
+
 function CartModal(props) {
     //create context variable
     const ctx = useContext(MenuContext);
     const formCtrl = useRef();
+    const [checkSub, setCheckSub] = useState(false);
+
+    function decrementItem(){
+        setCheckSub(false);
+    }
+
+    function incrementItem(){
+        setCheckSub(true);
+    }
 
     function submitHandler(event){
         event.preventDefault();
         
+        if(checkSub){
+            ctx.addItem()
+        }
     }
 
     return (
@@ -32,12 +45,14 @@ function CartModal(props) {
                         <form className={classes.cart_item_form}
                         onSubmit= {submitHandler}>
                             <input
+                                ref={formCtrl}
                                 className={classes.cart_item_input}
                                 type='number'
                                 min='0'
                                 max='10'
                                 value={element.itemQuantity} />
-                            <button className={classes.cart_item_buttons}>-Remove</button>
+                            <button className={classes.cart_item_buttons}
+                            onClick={decrementItem}>-Remove</button>
                             <button className={classes.cart_item_buttons}>+Add</button>
                         </form>
                     </Card>
