@@ -50,4 +50,9 @@
     text-transform: uppercase;
     transition: background-color .6s ease;
     overflow: hidden;
+    cursor:pointer;
+}
+
+.addButton:hover{
+    background-color: brown;
 }

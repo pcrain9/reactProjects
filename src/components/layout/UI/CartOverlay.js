@@ -14,7 +14,8 @@ function BackgroundModal(props) {
 
 function CartModal(props) {
     //create context variable
-    const ctx = useSelector(state => state.mealItems);
+    const ctx = useSelector(state => state.menuSlice.mealItems);
+    const totalCtx = useSelector(state => state.menuSlice.total);
     const dispatch = useDispatch();
 
     function decrementItem(id, amount) {
@@ -28,13 +29,13 @@ function CartModal(props) {
     return (
         <Card className={classes.cartList}>
             <div className={classes.cartList}>
-                {ctx.mealItems.map(element =>
+                {ctx.map(element =>
                     <Card className={classes.cart_items} key={Math.random()}>
                         <h3>{element.itemQuantity} {element.itemName}(s)....</h3>
-                        <h3>${Number(element.itemCost).toFixed(2)}</h3>
+                        <h3>${Number(element.itemCost * element.itemQuantity).toFixed(2)}</h3>
 
                         <div className={classes.cart_item_form}>
-                            <h3 className={classes.cart_item_input}>{element.itemQuantity}</h3>
+                            <p className={classes.cart_item_input}>{element.itemQuantity}</p>
                             <button className={classes.cart_item_buttons}
                                 onClick={() => decrementItem(element.id, 1)}>-Remove</button>
                             <button className={classes.cart_item_buttons}
@@ -44,10 +45,14 @@ function CartModal(props) {
                 )
                 }
 
-                <h2 className={classes.total}>Total: ${Number(ctx.total).toFixed(2)}</h2>
+                <h2 className={classes.total}>Total: ${Number(totalCtx).toFixed(2)}</h2>
                 <div className={classes.separate_buttons}>
-                    <Button onClose={props.onClose}>Close Cart</Button>
-                    {ctx.mealItems.length !== 0 && <Button onClose={props.onClose}>Place Your Order!</Button>}
+                    <Button 
+                    className={classes.close_order_buttons}
+                    onClose={props.onClose}>Close Cart</Button>
+                    {ctx.length !== 0 && <Button 
+                    className={classes.close_order_buttons}
+                    onClose={props.onClose}>Place Your Order!</Button>}
                 </div>
             </div>
         </Card>

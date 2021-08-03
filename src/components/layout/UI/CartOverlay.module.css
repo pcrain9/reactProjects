@@ -2,7 +2,7 @@
     background-color: white;
     border-radius: 15px;
     margin:auto;
-    height:420px;
+    height:465px;
     max-height: 100%;
     width:500px;
     max-width: 100%;
@@ -13,6 +13,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    animation: entrance .5s ease-in;
+}
+
+@keyframes entrance{
+    0%{
+        transform: translateX(-50%);
+    }
 }
 
 .total{
@@ -45,10 +52,8 @@
 .cart_item_form{
     text-align: center;
     margin:auto;
-    background-color: cornsilk;
-    border-radius: 35px;
+    width:150px;
     
-
 }
 
 .cart_item_buttons{
@@ -62,6 +67,25 @@
     font-size: 12px;
     letter-spacing: .08em;
     text-transform: uppercase;
-    transition: background-color .6s ease;
     overflow: hidden;
+    cursor:pointer;
+}
+
+.cart_item_buttons:hover{
+    background-color: brown;
+}
+
+.cart_item_input{
+    padding: 4px 8px; /* pixel unit */
+    border-radius: 50%;
+    width:10px;
+    font-size: 14px;
+    text-align: center;
+    margin-left:70px;
+    background: rgb(211, 75, 75);
+    color: white;
+}
+
+.close_order_buttons:hover{
+    background-color: brown;
 }

@@ -7,6 +7,10 @@
     padding:10px;
 }
 
+.cartButton:hover{
+    background-color: brown;
+}
+
 /*from https://medium.com/@MartinBing/css-how-to-create-the-perfect-badge-4b5239f10a8a?*/
 .badge {
     float:right;
@@ -18,4 +22,14 @@
     color: white;
     margin-top: 20px;
     margin-right: 20px;
+    
+}
+
+.cart_bounce{
+animation: bounce .3s;
+}
+@keyframes bounce {
+    0% { transform: scaleY(1.0) scaleX(1.0); }
+    50% { transform: scaleY(1.2) scaleX(1.2); }
+    100% { transform: scaleY(1.0) scaleX(1.0); }
 }

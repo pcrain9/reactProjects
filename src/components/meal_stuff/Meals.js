@@ -1,13 +1,17 @@
 import React, { useRef } from 'react';
 import Card from '../layout/UI/Card';
 import classes from './Meals.module.css';
+import { useDispatch } from 'react-redux';
+
+import { bounceActions } from '../store/handle-bounce-slice';
 
 function Meals(props) {
 
     const mealNumberStatus = useRef();
-
+    const dispatch = useDispatch();
     function addItemHandler(event){
         event.preventDefault();
+        dispatch(bounceActions.bounceisTrue());
         const amountEntered = mealNumberStatus.current.value;
         const numberAmountEntered = +amountEntered;
 
