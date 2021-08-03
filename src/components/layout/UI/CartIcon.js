@@ -1,12 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import classes from './CartIcon.module.css';
-import MenuContext from '../../store/handle-order';
+import { useSelector } from 'react-redux';
 import CartOverlay from './CartOverlay';
 import Button from './Button';
 
 
 function CartIcon() {
-    const notificationCtx = useContext(MenuContext);
+    const notificationCtx = useSelector(state => state.total);
 
     //show cart overlay
     const [showCart, setShowCart] = useState(false);
@@ -22,7 +22,7 @@ function CartIcon() {
         <div>
             <Button onDisplay={displayCart}
                 className={classes.cartButton}>My Cart</Button>
-            <span className={classes.badge}>{notificationCtx.mealItems.length}</span>
+            <span className={classes.badge}>{notificationCtx.total}</span>
             {showCart && <CartOverlay
                 onClose={closeCart} />}
         </div>

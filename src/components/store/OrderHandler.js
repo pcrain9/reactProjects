@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+/* import React, { useReducer } from 'react';
 
 import MenuContext from './handle-order';
 
@@ -102,4 +102,4 @@ function OrderHandler(props) {
     </MenuContext.Provider>
 }
 
-export default OrderHandler;
+export default OrderHandler; */

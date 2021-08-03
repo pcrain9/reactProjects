@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Card from '../layout/UI/Card';
 import Meals from './Meals';
-import MenuContext from '../store/handle-order';
+import { useDispatch } from 'react-redux';
+import { menuActions } from '../store/handle-cart-slice';
 import classes from './MealList.module.css';
 
 function MealList(props) {
@@ -31,7 +32,7 @@ function MealList(props) {
         cost: '1'
     }];
 
-    const mealsCtx = useContext(MenuContext);
+    const dispatch = useDispatch();
 
     function trackOrders(id, name, cost, quantity) {
 
@@ -41,11 +42,8 @@ function MealList(props) {
             itemCost: cost,
             itemQuantity: quantity
         };
-        console.log("itemQuantity: " +newItem.itemQuantity);
-        mealsCtx.addItem(newItem);
+        dispatch(menuActions.addItem({item: newItem, amount: quantity}));
     }
-
-
 
 return (
     <Card className={classes.mealList}>

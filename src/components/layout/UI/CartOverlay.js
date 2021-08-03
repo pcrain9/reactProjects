@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import classes from './CartOverlay.module.css';
 import Card from './Card';
-import MenuContext from '../../store/handle-order';
+import { useSelector, useDispatch } from 'react-redux'; 
+import { menuActions } from '../../store/handle-cart-slice';
 import Button from './Button';
 
 function BackgroundModal(props) {
@@ -13,21 +14,21 @@ function BackgroundModal(props) {
 
 function CartModal(props) {
     //create context variable
-    const ctx = useContext(MenuContext);
+    const ctx = useSelector(state => state.mealItems);
+    const dispatch = useDispatch();
 
-    function decrementItem(id) {
-        ctx.removeItem(id);
+    function decrementItem(id, amount) {
+        dispatch(menuActions.removeItem({id: id, amount: amount}));
     }
 
-    function incrementItem(item) {
-        ctx.addItem(item);
+    function incrementItem(item, amount) {
+        dispatch(menuActions.addItem({item: item, amount: amount}));
     }
 
     return (
         <Card className={classes.cartList}>
             <div className={classes.cartList}>
                 {ctx.mealItems.map(element =>
-
                     <Card className={classes.cart_items} key={Math.random()}>
                         <h3>{element.itemQuantity} {element.itemName}(s)....</h3>
                         <h3>${Number(element.itemCost).toFixed(2)}</h3>
@@ -35,9 +36,9 @@ function CartModal(props) {
                         <div className={classes.cart_item_form}>
                             <h3 className={classes.cart_item_input}>{element.itemQuantity}</h3>
                             <button className={classes.cart_item_buttons}
-                                onClick={() => decrementItem(element.id)}>-Remove</button>
+                                onClick={() => decrementItem(element.id, 1)}>-Remove</button>
                             <button className={classes.cart_item_buttons}
-                            onClick={() => incrementItem(element)}>+Add</button>
+                            onClick={() => incrementItem(element, 1)}>+Add</button>
                         </div>
                     </Card>
                 )
