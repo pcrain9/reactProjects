@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { bounceActions } from '../../store/handle-bounce-slice';
 import CartOverlay from './CartOverlay';
 import Button from './Button';
+import { menuActions } from '../../store/handle-cart-slice';
 
 
 function CartIcon() {
@@ -22,12 +23,12 @@ function CartIcon() {
         setShowCart(false);
     }
 
-    function onOrderWasPlacedHandler() {
-        
+    function orderWasPlacedHandler() {
+        dispatch(menuActions.clearCart());
+        setShowCart(false);
     }
 
      useEffect(() => {
-         console.log("here");
         if(notificationCtx === 0){
             return;
         }

@@ -1,2 +1,2 @@
-const description = 'Welcome to my mock restaurant!! Feel free to order any of the items below!';
+const description = 'Welcome to my first React app!  This app simulates a food ordering experience. Feel free to order any of the items below, check your cart, and check out!';
 export default description;

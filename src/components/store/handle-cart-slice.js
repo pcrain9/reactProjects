@@ -72,6 +72,10 @@ const menuSlice = createSlice({
                 mealItems: updatedItems,
                 total: updatedTotal
             };
+        },
+        clearCart(state) {
+            state.mealItems = [];
+            state.total = 0;
         }
     }
 });

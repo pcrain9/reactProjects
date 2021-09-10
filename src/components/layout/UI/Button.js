@@ -9,11 +9,14 @@ function Button(props){
             props.onDisplay();
             return;
         }
-        else if(props.onClose){
+        if(props.onClose){
             props.onClose();
             return;
         }
-        
+        if(props.onOrderWasPlaced){
+            props.onOrderWasPlaced();
+            return;
+        }
         else return;
     }
 
