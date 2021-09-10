@@ -4,7 +4,7 @@ import classes from './Button.module.css';
 
 function Button(props){
 
-    function evaluateClick(clicktype){
+    function evaluateClick(){
         if(props.onDisplay){
             props.onDisplay();
             return;

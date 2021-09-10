@@ -22,6 +22,10 @@ function CartIcon() {
         setShowCart(false);
     }
 
+    function onOrderWasPlacedHandler() {
+        
+    }
+
      useEffect(() => {
          console.log("here");
         if(notificationCtx === 0){
@@ -41,7 +45,8 @@ function CartIcon() {
                 className={classes.cartButton}>My Cart</Button>
             <span className={badgeStyler}>{notificationCtx}</span>
             {showCart && <CartOverlay
-                onClose={closeCart} />}
+                onClose={closeCart}
+                onOrderWasPlaced={orderWasPlacedHandler} />}
         </div>
     );
 }

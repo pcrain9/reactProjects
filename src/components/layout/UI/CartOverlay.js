@@ -52,7 +52,7 @@ function CartModal(props) {
                     onClose={props.onClose}>Close Cart</Button>
                     {ctx.length !== 0 && <Button 
                     className={classes.close_order_buttons}
-                    onClose={props.onClose}>Place Your Order!</Button>}
+                    onOrderWasPlaced={props.onOrderWasPlaced}>Place Your Order!</Button>}
                 </div>
             </div>
         </Card>
@@ -63,7 +63,7 @@ function CartOverlay(props) {
     return (
         <>
 
-            {ReactDOM.createPortal(<CartModal onClose={props.onClose} />,
+            {ReactDOM.createPortal(<CartModal onClose={props.onClose} onOrderWasPlaced={props.onOrderWasPlaced} />,
                 document.getElementById("modalHandler"))}
             {ReactDOM.createPortal(<BackgroundModal onClose={props.onClose} />,
                 document.getElementById("backGround"))}
