@@ -17,6 +17,10 @@ function Button(props){
             props.onOrderWasPlaced();
             return;
         }
+        if(props.onOrderIsComplete){
+            props.onOrderIsComplete();
+            return;
+        }
         else return;
     }
 

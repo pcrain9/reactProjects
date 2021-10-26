@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import classes from './CartOverlay.module.css';
 import Card from './Card';
@@ -16,6 +16,7 @@ function CartModal(props) {
     //create context variable
     const ctx = useSelector(state => state.menuSlice.mealItems);
     const totalCtx = useSelector(state => state.menuSlice.total);
+    const [ orderWasPlaced, setOrderWasPlaced ] = useState(false);
     const dispatch = useDispatch();
 
     function decrementItem(id, amount) {
@@ -28,7 +29,7 @@ function CartModal(props) {
 
     return (
         <Card className={classes.cartList}>
-            <div className={classes.cartList}>
+            {!orderWasPlaced ? <div className={classes.cartList}>
                 {ctx.map(element =>
                     <Card className={classes.cart_items} key={Math.random()}>
                         <h3>{element.itemQuantity} {element.itemName}(s)....</h3>
@@ -44,7 +45,6 @@ function CartModal(props) {
                     </Card>
                 )
                 }
-
                 <h2 className={classes.total}>Total: ${Number(totalCtx).toFixed(2)}</h2>
                 <div className={classes.separate_buttons}>
                     <Button 
@@ -52,9 +52,13 @@ function CartModal(props) {
                     onClose={props.onClose}>Close Cart</Button>
                     {ctx.length !== 0 && <Button 
                     className={classes.close_order_buttons}
-                    onOrderWasPlaced={props.onOrderWasPlaced}>Place Your Order!</Button>}
+                    onOrderIsComplete={() => setOrderWasPlaced(true)}>Place Your Order!</Button>}
                 </div>
-            </div>
+            </div>:
+            <Card className={classes.cart_complete}>
+                <h1 className={classes.order_complete_explanation}>Your order's been placed!  If this were a true food app, a fetch request with method='POST' would be sent to a server to fulfill this order :)</h1>
+                <Button onClose={props.onOrderWasPlaced}>Awesome!</Button>
+            </Card>}
         </Card>
     )
 }
