@@ -1,0 +1,11 @@
+.menu_container{
+    width:900px;
+    margin:auto;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.close_icon{
+    cursor:pointer
+}
