@@ -15,6 +15,8 @@ import classes from "./App.module.css";
 
 function App() {
   const [userClickedCart, setUserClickedCart] = useState(false);
+  const [loggedIn, setUserLoggedIn] = useState(false);
+
   const cartItemQuantity = useSelector(
     (state) => state.menuSlice.mealItems.length
   );
@@ -23,13 +25,18 @@ function App() {
     if(cartItemQuantity === 0) return;
     setUserClickedCart(true);
   }
+  
   function userClosedCartHandler() {
     setUserClickedCart(false);
   }
 
+  function handleUserLoggedIn() {
+    setUserLoggedIn(true);
+  }
+
   return (
     <>
-      <Header userClickedCart={userOpenedCartHandler}/>
+      <Header userLoggedin={loggedIn} userClickedCart={userOpenedCartHandler}/>
       <div className={classes.image_container}>
         <Card
           sx={{
@@ -49,7 +56,7 @@ function App() {
           <Menu />
         </Route>
         <Route exact path ="/login">
-          <LoginModal />
+          <LoginModal userDidLogin={handleUserLoggedIn} />
         </Route>
         <Route exact path ="/signup">
           <Signup />

@@ -14,10 +14,16 @@ import CloseIcon from "@mui/icons-material/Close";
 const ModalCartOrder = (props) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.menuSlice.mealItems);
-  console.log(cartItems);
+  const cartTotal = useSelector((state) => state.menuSlice.total).toFixed(2);
+
   function removeItemHandler(item) {
     dispatch(menuActions.actions.removeItem(item));
   }
+
+  function orderWasPlacedHandler() {
+    props.onClose();
+  }
+
   return (
     <Card
       sx={{
@@ -34,23 +40,25 @@ const ModalCartOrder = (props) => {
       </span>
       {cartItems.length === 0 ? null : (
         <Grid container>
-          <Typography
+          <Grid
+            item
+            component={Typography}
             variant="h5"
             sx={{ width: "35%", borderBottom: "1px solid black" }}
             gutterBottom
           >
             Summary
-          </Typography>
+          </Grid>
           {cartItems.map((item) => {
             return (
-              <Grid item xs={12} container key={item.id}>
+              <Grid item xs={12} container key={item.id} sx={{ padding:"10px"}}>
                 <Grid item xs={4} textAlign="end">
                   <Typography key={item.id} variant="h6">
                     {item.quantity}
                   </Typography>
                 </Grid>
                 <Grid item xs={6} sx={{ marginTop: "0" }}>
-                  <Typography variant="h6">&nbsp;{item.name}</Typography>
+                  <Typography variant="h6">&nbsp;{item.name}(s)</Typography>
                 </Grid>
                 <Grid item xs={2}>
                   <span className={classes.close_icon}>
@@ -67,23 +75,32 @@ const ModalCartOrder = (props) => {
         </Grid>
       )}
       {cartItems.length === 0 ? (
-        <Container alignItems="center" sx={{display:"flex", flexDirection:"column", justifyContent:"center"}}>
-          <Typography textAlign="center" variant="h2">Nothing in cart...yet!</Typography>
+        <Container
+          alignItems="center"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <Typography textAlign="center" variant="h2">
+            Nothing in cart...yet!
+          </Typography>
           <Button onClick={props.onClose} size="large">
             Back to menu
           </Button>
         </Container>
       ) : (
-        <Card sx={{ marginTop: "100px", height: "100px", width: "500px" }}>
+        <Container sx={{ margin: "auto", height: "50%", width: "75%" }}>
           <Button
             size="medium"
             variant="contained"
-            sx={{ marginLeft: "50px" }}
-            /* onClick={addToCartHandler} */
+            sx={{ marginTop: "40px" }}
+            onClick={orderWasPlacedHandler}
           >
-            Place your order - ${props.cost}
+            Place your order - ${cartTotal}
           </Button>
-        </Card>
+        </Container>
       )}
     </Card>
   );

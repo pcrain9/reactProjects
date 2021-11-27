@@ -6,6 +6,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import Badge from "@mui/material/Badge";
+import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -40,7 +41,7 @@ function Header(props) {
               Start your order
             </Link>
           </Container>
-          {isLoggedIn ? (
+          {props.userLoggedin ? (
             <Container sx={{ width: "10%" }}>
               <Badge
                 sx={{ cursor: "pointer" }}
@@ -55,8 +56,8 @@ function Header(props) {
             <Container
               sx={{
                 display: "flex",
-                justifyContent: "space-between",
-                width: "30%",
+                justifyContent: "space-evenly",
+                width: "40%",
               }}
             >
               <Button
@@ -77,6 +78,15 @@ function Header(props) {
               >
                 Sign up
               </Button>
+              <Box sx={{ width: "10%" }}>
+                <Badge
+                  sx={{ cursor: "pointer" }}
+                  onClick={props.userClickedCart}
+                  badgeContent={cartItemQuantity}
+                  color="warning"
+                >
+                  <ShoppingCartIcon /></Badge>
+                </Box>
             </Container>
           )}
         </Toolbar>

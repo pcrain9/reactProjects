@@ -10,7 +10,6 @@ const menuSlice = createSlice({
     initialState: menu,
     reducers: {
         removeItem: (state, action) => {
-            console.log(action.payload)
             for (let i = 0; i < state.mealItems.length; i++) {
                 if (state.mealItems[i].id === action.payload.id) {
                     //create instance of item to be decremented
