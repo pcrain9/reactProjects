@@ -5,6 +5,8 @@ import Card from "@mui/material/Card";
 import { Route, Switch } from "react-router-dom";
 
 import BackdropModal from './components/BackdropModal';
+import LoginModal from './pages/LoginModal';
+import Signup from './pages/Signup';
 import ModalCartOrder from './components/ModalCartOrder';
 import utensils from "./components/Fork_&_knife.png";
 import Header from "./components/Header";
@@ -45,6 +47,12 @@ function App() {
       <Switch>
         <Route exact path='/menu'>
           <Menu />
+        </Route>
+        <Route exact path ="/login">
+          <LoginModal />
+        </Route>
+        <Route exact path ="/signup">
+          <Signup />
         </Route>
       </Switch>
       {userClickedCart ? (

@@ -13,17 +13,26 @@ import classes from "./ModalMenu.module.css";
 import CloseIcon from "@mui/icons-material/Close";
 
 const ModalMenu = (props) => {
+  const numTotal = Number(props.cost)
   const dispatch = useDispatch();
-  const [itemAmount, setItemAmount] = useState(0);
+  const [itemAmount, setItemAmount] = useState(1);
+  const [total, setTotal] = useState(numTotal);
+  
   function handleCartAction(plusMinus) {
     const currentAmount = itemAmount;
+    let newTotal;
+
     if (plusMinus === "+") {
       setItemAmount(currentAmount + 1);
+      newTotal = total + Number(props.cost);
+      setTotal(newTotal);
     } else {
       if (currentAmount === 0) {
         return;
       }
       setItemAmount(currentAmount - 1);
+      newTotal = total - Number(props.cost);
+      setTotal(newTotal);
     }
   }
 
@@ -124,7 +133,7 @@ const ModalMenu = (props) => {
                 variant="contained"
                 onClick={addToCartHandler}
               >
-                add to cart - ${props.cost}
+                add to cart - ${total.toFixed(2)}
               </Button>
             </Container>
           </Card>
