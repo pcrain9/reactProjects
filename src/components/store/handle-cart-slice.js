@@ -10,22 +10,23 @@ const menuSlice = createSlice({
     initialState: menu,
     reducers: {
         removeItem: (state, action) => {
+            console.log(action.payload)
             for (let i = 0; i < state.mealItems.length; i++) {
                 if (state.mealItems[i].id === action.payload.id) {
                     //create instance of item to be decremented
                     const updatedItem = state.mealItems[i];
                     //update the total
-                    const updatedTotal = state.total - updatedItem.itemCost;
+                    const updatedTotal = state.total - updatedItem.cost;
                     //update item instance to account for decrement 
                     let itemUpdate = {
                         ...updatedItem,
-                        itemQuantity: Number(updatedItem.itemQuantity) - action.payload.amount
+                        quantity: Number(updatedItem.quantity) - action.payload.quantity
                     };
                     //create copy of array to update and pass back
                     let updatedMealList = [...state.mealItems];
 
                     //reached 0 items check
-                    if (itemUpdate.itemQuantity === 0) {
+                    if (itemUpdate.quantity === 0) {
                         updatedMealList.splice(i, 1);
                         return {
                             mealItems: updatedMealList,
@@ -45,15 +46,15 @@ const menuSlice = createSlice({
             return menu;
         },
         addItem: (state, action) => {
-            const updatedTotal = state.total + action.payload.item.itemCost * Number(action.payload.amount);
+            const updatedTotal = state.total + action.payload.cost * Number(action.payload.quantity);
             for (let i = 0; i < state.mealItems.length; i++) {
-                if (state.mealItems[i].id === action.payload.item.id) {
+                if (state.mealItems[i].id === action.payload.id) {
                     //create copy of item
                     const itemToUpdate = state.mealItems[i];
                     let updatedMealList;
                     let innerItemUpdate = {
                         ...itemToUpdate,
-                        itemQuantity: itemToUpdate.itemQuantity + action.payload.amount
+                        quantity: itemToUpdate.quantity + action.payload.quantity
                     };
                     //copy state array here
                     updatedMealList = [...state.mealItems];
@@ -66,7 +67,7 @@ const menuSlice = createSlice({
                     };
                 }
             }
-            const updatedItems = state.mealItems.concat(action.payload.item);
+            const updatedItems = state.mealItems.concat(action.payload);
 
             return {
                 mealItems: updatedItems,

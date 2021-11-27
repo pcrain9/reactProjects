@@ -15,9 +15,9 @@ function MenuItems(props) {
         <CardContent>
           <Typography variant="h6" sx={{ display:"flex", flexDirection:"row" }}>
             {props.name}
-            <KeyboardArrowRightIcon sx={{ paddingTop:"5px"}} />
+            <KeyboardArrowRightIcon sx={{ paddingTop:"5px" }} />
           </Typography>
-          <Typography paragraph="true">{props.description}</Typography>
+          <Typography paragraph={true}>{props.description}</Typography>
         </CardContent>
         </CardActionArea>
       </Card>
